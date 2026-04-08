@@ -1,16 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meme Gallery</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Meme Factory</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <h1>Meme Gallery</h1>
-  <p id="loader">Loading memes...</p>
-  <div id="meme-container"></div>
-  <script src="script.js"></script>
+    <header class="glass-header">
+        <div class="header-top">
+            <h1>The Meme Factory</h1>
+            <button id="themeToggle" class="icon-btn" title="Toggle Theme">
+                <i class="ph ph-moon"></i>
+            </button>
+        </div>
+
+        <div class="controls">
+            <div class="search-wrapper">
+                <i class="ph ph-magnifying-glass search-icon"></i>
+                <input type="text" id="search" placeholder="Search memes...">
+            </div>
+
+            <div class="actions-wrapper">
+                <select id="sort" class="select-glass">
+                    <option value="">Sort</option>
+                    <option value="az">A-Z</option>
+                    <option value="za">Z-A</option>
+                </select>
+
+                <div class="filter-buttons">
+                    <button class="filter-btn active" id="allBtn">All</button>
+                    <button class="filter-btn" id="popularBtn"><i class="ph-fill ph-fire"></i> Popular</button>
+                    <button class="filter-btn" id="likedBtn"><i class="ph-fill ph-heart"></i> Liked</button>
+                    <button class="filter-btn" id="backBtn" style="display:none"><i class="ph ph-arrow-left"></i> Back</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="meme-container"></div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-box glass-panel">
+            <button id="close" class="icon-btn close-btn"><i class="ph ph-x"></i></button>
+            <div class="modal-img-wrapper">
+                <img id="modalImg" alt="Meme Preview">
+            </div>
+            <div class="modal-content">
+                <h3 id="modalTitle"></h3>
+                <div class="modal-actions">
+                    <button id="likeBtn" class="action-btn"><i class="ph ph-heart"></i> Like</button>
+                    <button id="shareBtn" class="action-btn"><i class="ph ph-share-network"></i> Share</button>
+                    <button id="downloadBtn" class="action-btn primary"><i class="ph ph-download-simple"></i> Download</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
 </body>
+
 </html>
