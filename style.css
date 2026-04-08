@@ -53,7 +53,7 @@ body.no-scroll {
 h1 {
     font-size: 2rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #fff, #9CA3AF);
+    background: linear-gradient(135deg, #fff, #dedef0);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -61,7 +61,7 @@ h1 {
 }
 
 .light h1 {
-    background: linear-gradient(135deg, #0F172A, #64748B);
+    background: linear-gradient(135deg, #1a1a21, #171721);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
