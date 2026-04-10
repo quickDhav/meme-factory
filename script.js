@@ -24,7 +24,7 @@ let liked = JSON.parse(localStorage.getItem("liked")) || [];
 let current = {};
 
 
-// fetch memes
+
 fetch("https://api.imgflip.com/get_memes")
     .then(res => res.json())
     .then(data => {
@@ -45,7 +45,7 @@ function escapeHTML(str) {
     );
 }
 
-// display
+
 function display(data) {
     container.innerHTML = data.map(meme => {
         const isLiked = liked.includes(meme.id);
@@ -75,10 +75,9 @@ function display(data) {
 }
 
 
-// modal
+
 function openModal(url, name, id) {
     modal.style.display = "flex";
-    // Trigger reflow
     void modal.offsetWidth;
     modal.classList.add("active");
     document.body.classList.add("no-scroll");
@@ -94,21 +93,21 @@ function openModal(url, name, id) {
 }
 
 
-// close modal
+
 close.onclick = () => {
     modal.classList.remove("active");
     document.body.classList.remove("no-scroll");
     setTimeout(() => {
         modal.style.display = "none";
-    }, 300); // Wait for transition
+    }, 300); 
 }
 
-// Close modal on backdrop click
+
 document.querySelector(".modal-backdrop").addEventListener("click", () => {
     close.onclick();
 });
 
-// share
+
 function share(url) {
     navigator.clipboard.writeText(url)
         .then(() => alert("URL Copied to clipboard!"))
@@ -120,17 +119,15 @@ shareBtn.onclick = () => {
 }
 
 
-// download
+
 async function download(url) {
     try {
-        // Fetch the image as a blob to force download instead of navigation
         const response = await fetch(url);
         const blob = await response.blob();
         const blobUrl = URL.createObjectURL(blob);
         
         const a = document.createElement("a");
         a.href = blobUrl;
-        // Extract filename from URL or default to meme.jpg
         const filename = url.split('/').pop() || "meme.jpg";
         a.download = filename;
         
@@ -141,7 +138,6 @@ async function download(url) {
         URL.revokeObjectURL(blobUrl);
     } catch (error) {
         console.error("Error downloading image:", error);
-        // Fallback if CORS prevents fetching the blob directly
         window.open(url, '_blank');
     }
 }
@@ -151,7 +147,6 @@ downloadBtn.onclick = () => {
 }
 
 
-// like
 function toggleLike(id) {
     if (liked.includes(id)) {
         liked = liked.filter(x => x !== id);
@@ -161,8 +156,6 @@ function toggleLike(id) {
 
     localStorage.setItem("liked", JSON.stringify(liked));
     display(filtered);
-
-    // Update modal button if open
     if (current.id === id) {
         const isLiked = liked.includes(id);
         likeBtn.className = `action-btn ${isLiked ? 'liked' : ''}`;
@@ -175,7 +168,6 @@ likeBtn.onclick = () => {
 }
 
 
-// search
 search.addEventListener("input", e => {
     let val = e.target.value.toLowerCase();
     filtered = memes.filter(m =>
@@ -184,13 +176,12 @@ search.addEventListener("input", e => {
     display(filtered);
 });
 
-// filter buttons utility
+
 function setActiveFilterBtn(btn) {
     document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
     if (btn) btn.classList.add("active");
 }
 
-// sort
 sort.addEventListener("change", e => {
     let sorted = [...filtered];
     if (e.target.value === "az") {
@@ -203,7 +194,6 @@ sort.addEventListener("change", e => {
 });
 
 
-// all
 allBtn.onclick = () => {
     filtered = memes;
     display(filtered);
@@ -214,8 +204,6 @@ allBtn.onclick = () => {
 
 
 
-
-// liked
 likedBtn.onclick = () => {
     filtered = memes.filter(m => liked.includes(m.id));
     display(filtered);
@@ -224,7 +212,7 @@ likedBtn.onclick = () => {
 }
 
 
-// back
+
 backBtn.onclick = () => {
     filtered = memes;
     display(filtered);
@@ -233,7 +221,7 @@ backBtn.onclick = () => {
 }
 
 
-// theme toggle
+
 toggle.onclick = () => {
     document.body.classList.toggle("light");
     const icon = toggle.querySelector('i');
