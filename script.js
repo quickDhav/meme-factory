@@ -3,7 +3,7 @@ const search = document.getElementById("search");
 const sort = document.getElementById("sort");
 
 const allBtn = document.getElementById("allBtn");
-const popularBtn = document.getElementById("popularBtn");
+
 const likedBtn = document.getElementById("likedBtn");
 const backBtn = document.getElementById("backBtn");
 
@@ -212,13 +212,7 @@ allBtn.onclick = () => {
 }
 
 
-// popular
-popularBtn.onclick = () => {
-    filtered = memes.slice(0, 20);
-    display(filtered);
-    backBtn.style.display = "flex";
-    setActiveFilterBtn(popularBtn);
-}
+
 
 
 // liked
